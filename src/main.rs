@@ -13,13 +13,13 @@ fn main() {
 
 fn get_chunks(filename: &str) -> Vec<Vec<u8>> {
     let bytes = std::fs::read(filename).unwrap();
-    let mut chunks = vec![];
+    let mut chunks: Vec<Vec<u8>> = vec![];
     let mut i = 0;
     while i < bytes.len() {
         let x = std::cmp::min(bytes.len(), 256000 + i);
         let mut chunk: Vec<u8> = vec![0; 256000];
         chunk[..].clone_from_slice(&bytes[i..x]);
-        chunks.append(&mut chunk);
+        chunks.push(chunk);
         i = x;
     }
     chunks 
