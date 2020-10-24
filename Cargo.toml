@@ -10,3 +10,4 @@ edition = "2018"
 
 merkletree = "0.21.0"
 ring = "0.16.15"
+sha2 = "0.9.1"

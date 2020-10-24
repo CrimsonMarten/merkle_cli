@@ -1,15 +1,16 @@
-use merkletree;
-use ring::digest::{Context, Digest, SHA256};
-use std::env;
+use merkletree::merkle::MerkleTree;
+use merkletree::hash::{Algorithm, Hashable};
+use sha2::Sha256;
 use std::fs;
 use std::fs::File;
 use std::io::Read;
 use std::iter::Map;
+use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let chunks = get_chunks(&args[1]);
-    let tree = merkletree::from_byte
+    let t: MerkleTree<[u8; 32], ExampleAlgorithm> = MerkleTree::from_iter(chunks);
 }
 
 fn get_chunks(filename: &str) -> Vec<Vec<u8>> {
