@@ -12,10 +12,15 @@ fn main() {
 }
 
 fn get_chunks(filename: &str) -> Vec<Vec<u8>> {
-    let mut f = File::open(filename).expect("File not found!");
-    let metadata = fs::metadata(&filename).expect("unable to read metadata");
-    let mut buffer = vec![0; metadata.len() as usize];
-    f.read(&mut buffer).expect("buffer overflow");
-
-    let mut chunks: 
+    let bytes = std::fs::read(filename).unwrap();
+    let mut chunks = vec![];
+    let mut i = 0;
+    while i < bytes.len() {
+        let x = std::cmp::min(bytes.len(), 256000 + i);
+        let mut chunk: Vec<u8> = vec![0; 256000];
+        chunk[..].clone_from_slice(&bytes[i..x]);
+        chunks.append(&mut chunk);
+        i = x;
+    }
+    chunks 
 }
