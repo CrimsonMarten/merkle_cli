@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 
 merkletree = "0.21.0"
-sha-1 = "0.9.1"
+ring = "0.16.15"

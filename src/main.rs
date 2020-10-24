@@ -1,14 +1,15 @@
-extern crate merkletree;
-use sha1::{Sha1, Digest};
+use merkletree;
+use ring::digest::{Context, Digest, SHA256};
 use std::env;
 use std::fs;
 use std::fs::File;
 use std::io::Read;
+use std::iter::Map;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    
-
+    let chunks = get_chunks(&args[1]);
+    let tree = merkletree::from_byte
 }
 
 fn get_chunks(filename: &str) -> Vec<Vec<u8>> {
